@@ -1,4 +1,7 @@
-# notes_app
+# Notes App
+
+preview :
+![screenshoot](https://github.com/novannp/flutter_simple_notes_app/blob/main/screenshoot.png)
 
 A new Flutter project.
 
