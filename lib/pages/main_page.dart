@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/extensions/date_format.dart';
 import 'package:notes_app/models/note.dart';
 import 'package:notes_app/pages/add_note_page.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../db/database_provider.dart';
 import 'edit_note_page.dart';
@@ -21,6 +22,23 @@ class _MainPageState extends State<MainPage> {
   getNotes() async {
     final notes = await DatabaseProvider.db.getNotes();
     return notes;
+  }
+
+  Future<bool> requestFilePermission() async {
+    PermissionStatus result;
+    result = await Permission.storage.request();
+    if (result.isGranted) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    requestFilePermission();
+    super.initState();
   }
 
   @override
